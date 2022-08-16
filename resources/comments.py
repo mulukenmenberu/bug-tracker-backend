@@ -24,8 +24,23 @@ class Comment(Resource):
             return jsonify(comments)
 class CommentList(Resource):
     def get(self, id):
-        return "get comment"
+         d = Comments.query.get(id)
+         comments = []
+         comments.append({
+                    "id" :d.id,
+                    "user_id" :d.user_id,
+                    "issue_id" :d.issue_id,
+                    "content": d.content,
+            })
+         return jsonify(comments)
     def put(self, id):
-        return "update comment"
+        comments = Comments.query.get(id)
+        data = request.get_json(force=True)
+        comments.user_id = data['user_id']
+        comments.issue_id = data['issue_id']
+        comments.content = data['content']
+        db.session.commit()
+        return jsonify({"message":"success","code":200})
     def delete(self, id):
-        return "delete comment"
+        Comments.query.filter_by(id=id).delete()
+        return jsonify({"message":"success","code":200})

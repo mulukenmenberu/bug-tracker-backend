@@ -47,8 +47,39 @@ class User(Resource):
         return "delete test"
 class UserList(Resource):
     def get(self, id):
-        return "get user"
+        d = Users.query.get(id)
+        user = []
+        user.append({
+                 "id":d.id,
+                "full_name" : d.full_name,
+                "nik_name" :d.nik_name,
+                "email" :d.email,
+                "address" :d.address,
+                "position" :d.position,
+                "role" :d.role,
+                "user_name" :d.user_name,
+                "password" :d.password,
+                "last_login" :d.last_login,
+                "created_at" :d.created_at,
+                "updated_at" :d.updated_at,
+            })
+        return jsonify(user)
     def put(self, id):
-        return "update user"
+        data = request.get_json(force=True)
+        user = Users.query.get(id)
+        user.full_name = data['full_name']
+        user.nik_name = data['nik_name']
+        user.email = data['email']
+        user.address = data['address']
+        user.position = data['position']
+        user.role = data['role']
+        user.user_name = data['user_name']
+        user.password = data['password']
+        user.last_login = data['last_login']
+        user.created_at = data['created_at']
+        user.updated_at = data['updated_at']
+        db.session.commit()
+        return jsonify({"message":"success","code":200})
     def delete(self, id):
-        return "delete user"
+        Users.query.filter_by(id=id).delete()
+        return jsonify({"message":"success","code":200})

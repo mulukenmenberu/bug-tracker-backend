@@ -8,9 +8,9 @@ from model import  db
 from flask_restful import Resource, Api
 from flask_cors import CORS
 
-from routes.comments import Comment, CommentList 
-from routes.issues import Issue, IssuesList
-from routes.users import User, UserList
+from resources.comments import Comment, CommentList 
+from resources.issues import Issue, IssuesList
+from resources.users import User, UserList
 
 app = Flask(__name__)
 moment = Moment(app)
@@ -35,6 +35,7 @@ def page_not_found(error):
     return jsonify({"message":"page not found","error":404})
 @app.route('/',methods=['GET','POST'])
 def index():
-    return "ok"
+    return "ok" 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+    app.debug = True
