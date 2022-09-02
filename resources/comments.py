@@ -43,4 +43,5 @@ class CommentList(Resource):
         return jsonify({"message":"success","code":200})
     def delete(self, id):
         Comments.query.filter_by(id=id).delete()
-        return jsonify({"message":"success","code":200})
+        db.session.commit()
+        return jsonify({"message":"comment deleted","code":200})

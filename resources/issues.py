@@ -1,7 +1,7 @@
 from unicodedata import category
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
-
+import time
 from model import Issues, db
 class Issue(Resource):
     def post(self):
@@ -10,14 +10,14 @@ class Issue(Resource):
         descriprion = data['descriprion']
         category = data['category']
         priority = data['priority']
-        assignee = data['assignee']
+       #assignee = data['assignee']
         due_date = data['due_date']
-        assigned_date = data['assigned_date']
-        solved_date = data['solved_date']
-        created_at= data['created_at']
-        updated_at = data['updated_at']
-        issue = Issues(name=name, descriprion=descriprion, category=category, priority=priority, assignee=assignee, due_date=due_date,
-            assigned_date=assigned_date, solved_date=solved_date, created_at=created_at, updated_at=updated_at)
+       # assigned_date = data['assigned_date']
+        #solved_date = data['solved_date']
+        created_at= time.time()#data['created_at']
+        updated_at = time.time()#data['updated_at']
+        issue = Issues(name=name, descriprion=descriprion, category=category, priority=priority, due_date=due_date,
+             created_at=created_at, updated_at=updated_at)
         db.session.add(issue)
         db.session.commit()
         return jsonify({"message":"success","code":200})
@@ -41,7 +41,7 @@ class Issue(Resource):
             return jsonify(issues)
 class IssuesList(Resource):
     def get(self, id):
-        d = Issues.query.all()
+        d = Issues.query.get(id)
         issues = []
         issues.append({
                      "id":d.id,
@@ -66,10 +66,11 @@ class IssuesList(Resource):
         issue.priority = data['priority']
         issue.assignee = data['assignee']
         issue.due_date = data['due_date']
-        issue.assigned_date = data['assigned_date']
-        issue.solved_date = data['solved_date']
-        issue.created_at= data['created_at']
-        issue.updated_at = data['updated_at']
+        if len(data['assignee'])>0:
+            issue.assigned_date =  time.time()
+        if len(data['assignee'])>0:
+            issue.solved_date = time.time()
+        issue.updated_at = time.time()
         db.session.commit()
         return jsonify({"message":"success","code":200})
     def delete(self,id):
