@@ -11,7 +11,7 @@ from flask_cors import CORS
 from resources.comments import Comment, CommentList 
 from resources.issues import Issue, IssuesList
 from resources.users import User, UserList
-
+from resources.login import Login
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
@@ -29,6 +29,10 @@ api.add_resource(Comment, '/comments/')
 api.add_resource(UserList, '/users/<int:id>')
 api.add_resource(IssuesList, '/issues/<int:id>')
 api.add_resource(CommentList, '/comments/<int:id>')
+
+## Login endpoint
+api.add_resource(Login, '/login')
+
 
 @app.errorhandler(404)
 def page_not_found(error):

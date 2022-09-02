@@ -1,9 +1,12 @@
-from unicodedata import name
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 from model import Users, Issues, Comments, db
+import time
+import bcrypt
+from auth import admin_login_required, user_login_required, login_required
 class User(Resource):
-    def post(self):
+    @admin_login_required
+    def post(self, payload):
         data = request.get_json(force=True)
         full_name = data['full_name']
         nik_name = data['nik_name']
@@ -13,15 +16,16 @@ class User(Resource):
         role = data['role']
         user_name = data['user_name']
         password = data['password']
-        last_login = data['last_login']
-        created_at = data['created_at']
-        updated_at = data['updated_at']
+        #last_login = data['last_login']
+        created_at = time.time() #data['created_at']
+        updated_at = time.time()#data['updated_at']
         user = Users(full_name=full_name, nik_name=nik_name, email=email, address=address, position=position, role=role,
-        user_name=user_name, password=password, last_login=last_login, created_at=created_at, updated_at=updated_at)
+        user_name=user_name, password=password, created_at=created_at, updated_at=updated_at)
         db.session.add(user)
         db.session.commit()
         return jsonify({"message":"success","code":200})
-    def get(self):
+    @admin_login_required
+    def get(self, payload):
         data = Users.query.all()
         users = []
         for d in data:
@@ -46,7 +50,8 @@ class User(Resource):
     def delete(self):
         return "delete test"
 class UserList(Resource):
-    def get(self, id):
+    @login_required
+    def get(self, id, payload):
         d = Users.query.get(id)
         user = []
         user.append({
@@ -64,7 +69,8 @@ class UserList(Resource):
                 "updated_at" :d.updated_at,
             })
         return jsonify(user)
-    def put(self, id):
+    @admin_login_required
+    def put(self, id, payload):
         data = request.get_json(force=True)
         user = Users.query.get(id)
         user.full_name = data['full_name']
@@ -75,11 +81,12 @@ class UserList(Resource):
         user.role = data['role']
         user.user_name = data['user_name']
         user.password = data['password']
-        user.last_login = data['last_login']
-        user.created_at = data['created_at']
-        user.updated_at = data['updated_at']
+        #user.last_login = data['last_login']
+        user.created_at = time.time()#data['created_at']
+        user.updated_at = time.time()#data['updated_at']
         db.session.commit()
-        return jsonify({"message":"success","code":200})
-    def delete(self, id):
+        return jsonify({"message":"user updated","code":200})
+    @admin_login_required
+    def delete(self, id, apyload):
         Users.query.filter_by(id=id).delete()
-        return jsonify({"message":"success","code":200})
+        return jsonify({"message":"User Deleted","code":200})

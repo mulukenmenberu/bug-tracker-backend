@@ -1,3 +1,4 @@
+
 from email.policy import default
 from venv import create
 from flask_sqlalchemy import SQLAlchemy
@@ -15,7 +16,7 @@ class Users(db.Model):
     role = db.Column(db.String(120))
     user_name = db.Column(db.String(120))
     password = db.Column(db.String())
-    last_login = db.Column(db.String())
+    last_login = db.Column(db.String(), nullable=True)
     created_at = db.Column(db.String())
     updated_at = db.Column(db.String())
 
@@ -26,12 +27,12 @@ class Issues(db.Model):
     descriprion = db.Column(db.String())
     category = db.Column(db.String(120))
     priority = db.Column(db.String(120), nullable=True)
-    assignee = db.Column(db.String(120))
-    due_date = db.Column(db.String(500), nullable=True)
-    assigned_date = db.Column(db.String(120), nullable=True)
-    solved_date = db.Column(db.String(120), nullable=True)
-    created_at= db.Column(db.String(10), nullable=True, default='n')
-    updated_at = db.Column(db.String(120), nullable= True)
+    assignee = db.Column(db.String(120), nullable=True)
+    due_date = db.Column(db.String(), nullable=True)
+    assigned_date = db.Column(db.String(), nullable=True)
+    solved_date = db.Column(db.String(), nullable=True)
+    created_at= db.Column(db.String(), nullable=True)
+    updated_at = db.Column(db.String(), nullable= True)
 
 class Comments(db.Model):
     __tablename__ = 'comments'
