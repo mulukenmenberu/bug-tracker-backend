@@ -1,5 +1,5 @@
 # Bug Tracker API Documentation
-## Environemnt Setup & Setting up the Backend
+## Environemnt Setup 
 ### Python Installation 
 If you Don't have installed Python yet, please go here and itstall it. 
 https://docs.python.org/3/using/unix html#getting-and-installing-the-latest-version-of-python)
