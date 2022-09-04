@@ -214,13 +214,14 @@ or
             "user_name": "abe",
             "password": "1234"
         }
-
+   ```
     - Returns JSON data like the following format 
     ```json
            {
         "code": 201,
         "message": "user registered"
       }
+    ```
 2. /issues 
   - adds issues to the DB
   - Request Arguments: 
@@ -232,13 +233,15 @@ or
             "priority": "high",
             "due_date": "11-05-17"
        }
+  ```
 
     - Returns JSON data like the following format 
     ```json
            {
         "code": 201,
         "message": "Issues registered"
-      }
+      } 
+    ```
 3. /comments 
   - adds a comment on a specific issue
   - Request Arguments: 
@@ -247,13 +250,15 @@ or
           "content": "test comment",
           "issue_id": 1,
           "user_id": 1
-       }
+       } 
+  ```
   - Returns JSON data like the following format 
   ```json
            {
         "code": 201,
         "message": "comment added"
       }
+  ```
 4. /login 
   - login endpoint
   - Request Arguments: 
@@ -262,13 +267,14 @@ or
         "username":"test@gmail.com",
          "password":"1234"
        }
-
+  ```
   - Returns JSON data like the following format 
   ```json
            {
-          "ussrData": ["user name", "role"...],
+          "userData": ["user name", "role"...],
           "token": "this is jwt token"
       }
+  ```
 ### Endponints accessed by PUT Method 
 
 
