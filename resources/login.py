@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
-from model import Users, Issues, Comments, db
+from models.model import Users, Issues, Comments, db
 import time
-from auth import generate_jwt_token, admin_login_required, user_login_required, login_required
+from auth.auth import generate_jwt_token, admin_login_required, user_login_required, login_required
 from resources.users import User
 import bcrypt
 class Login(Resource):

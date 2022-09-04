@@ -2,7 +2,7 @@ from unicodedata import category
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 import time
-from model import Issues, db
+from models.model import Issues, db
 class Issue(Resource):
     def post(self):
         data = request.get_json(force=True)

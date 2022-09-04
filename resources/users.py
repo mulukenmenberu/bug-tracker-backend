@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
-from model import Users, Issues, Comments, db
+from models.model import Users, Issues, Comments, db
 import time
 import bcrypt
-from auth import admin_login_required, user_login_required, login_required
+from auth.auth import admin_login_required, user_login_required, login_required
 class User(Resource):
     @admin_login_required
     def post(self, payload):

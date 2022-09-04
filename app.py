@@ -4,7 +4,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_migrate import Migrate
-from model import  db
+from models.model import  db
 from flask_restful import Resource, Api
 from flask_cors import CORS
 

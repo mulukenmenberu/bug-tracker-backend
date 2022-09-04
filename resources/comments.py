@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
-from model import Comments, db
+from models.model import Comments, db
 class Comment(Resource):
     def post(self):
         data = request.get_json(force=True)

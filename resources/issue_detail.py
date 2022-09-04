@@ -2,7 +2,7 @@ from unicodedata import category
 from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 
-from model import Issues, db, Users
+from models.model import Issues, db, Users
 
 class IssueDetail(Resource):
     # get list of tasks for a user
