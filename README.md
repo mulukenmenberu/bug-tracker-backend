@@ -1,4 +1,14 @@
 # Bug Tracker API Documentation
+
+## Project Description 
+
+This is a bug tracker api which allows to track bugs or tasks and assigning them to the available personnel. this is python (Flask) backend for the bug tracker project. this project has the following list of functionalities 
+
+- Admin
+  - Register & Manage Users, Register & Manage Issues, Assign Issues to Users, Track progress, Manage comments added to issues e.t.c
+- Users
+  - View All issues, manage issues assigned to them, track isue progress, add comment on issues e.t.c
+
 ## Environemnt Setup 
 ### Python Installation 
 If you Don't have installed Python yet, please go here and itstall it. 
