@@ -10,7 +10,7 @@ class Comment(Resource):
         comment = Comments(user_id=user_id, issue_id=issue_id, content=content)
         db.session.add(comment)
         db.session.commit()
-        return jsonify({"message":"success","code":200})
+        return jsonify({"message":"comment added","code":201})
     def get(self):
         data = Comments.query.all()
         comments = []

@@ -23,7 +23,7 @@ class User(Resource):
         user_name=user_name, password=password, created_at=created_at, updated_at=updated_at)
         db.session.add(user)
         db.session.commit()
-        return jsonify({"message":"success","code":200})
+        return jsonify({"message":"user added","code":201})
     @admin_login_required
     def get(self, payload):
         data = Users.query.all()

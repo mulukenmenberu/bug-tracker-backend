@@ -33,6 +33,14 @@ If you want to have a demo data in the newly created DB, you can run the followi
 ```bash
 psql bug_tracker < bug_tracker.psql
 ```
+- Alternatively, you can create at once all required tables using flask migrate, but you will not find any demo data
+  - follow the following command to apply flask migrate
+```bash
+flask db init 
+flask db migrate
+flask db upgrade
+```
+
 ### Exporting Environment Variables 
 In order to run this flask API, please run the following command to store your root app to environemnt variable 
 ```bash
@@ -92,7 +100,7 @@ or
             "user_name": "unix timestamp will be here"
         }.............
 
-  2. /get a user
+  2. /get/<int:user_id>
       - gets a single user based on user id. 
           - Request Arguments: User ID
           - Returns JSON data like the following format 
@@ -112,13 +120,155 @@ or
                 "user_name": "unix timestamp will be here"
              },
   3. /issues/<int:issue_id>
+       - gets a single Issue (Task)  based on task id. 
+          - Request Arguments: Issue ID
+          - Returns JSON data like the following format 
+          ```json
+             {
+                "assigned_date": "1662124444.2369049",
+                "assignee": "Muluken",
+                "category": "Bug",
+                "created_at": "1662124444.2369049",
+                "descriprion": "test descriprion",
+                "due_date": "1662124444.2369049",
+                "id": 1,
+                "name": "Javascript Bug on Landing Page",
+                "priority": "high",
+                "solved_date": "1662124444.236909",
+                "updated_at": "1662124444.2369113"
+             }
   4. /issues
+    - gets list of all registered issues. 
+          - Request Arguments: None
+          - Returns JSON data like the following format 
+          ```json
+             [
+                  {
+                      "assigned_date": "1662124444.2369049",
+                      "assignee": "Muluken",
+                      "category": "Bug",
+                      "created_at": "1662124444.2369049",
+                      "descriprion": "test descriprion",
+                      "due_date": "1662124444.2369049",
+                      "id": 1,
+                      "name": "Javascript Bug on Landing Page",
+                      "priority": "high",
+                      "solved_date": "1662124444.236909",
+                      "updated_at": "1662124444.2369113"
+                  },
+                      {
+                        "assigned_date": "1662124444.2369049",
+                        "assignee": "test user",
+                        "category": "Bug",
+                        "created_at": "1662124444.2369049",
+                        "descriprion": "test descriprion",
+                        "due_date": "1662124444.2369049",
+                        "id": 2,
+                        "name": "Javascript Bug on Landing Page",
+                        "priority": "Low",
+                        "solved_date": "1662124444.236909",
+                        "updated_at": "1662124444.2369113"
+                  },
+            ]
   5. /comments
+    - gets list of comments (discussions) on all available tasks. 
+          - Request Arguments: None
+          - Returns JSON data like the following format 
+          ```json
+               [
+                    {
+                        "content": "test comment",
+                        "id": 2,
+                        "issue_id": 1,
+                        "user_id": 1
+                    },
+                     {
+                        "content": "sample comment",
+                        "id": 1,
+                        "issue_id": 5,
+                        "user_id": 2
+                    }
+              ]
   6. /comments/<int:comment_id>
+    - gets a specific comment using coment ID 
+          - Request Arguments: Comemnt ID
+          - Returns JSON data like the following format 
+          ```json
+               
+                    {
+                        "content": "test comment",
+                        "id": 2,
+                        "issue_id": 1,
+                        "user_id": 1
+                    }
 ### Endponints accessed by POST Method 
- ...
-
+1. /users 
+ - adds users to the DB
+      - Request Arguments: 
+      ```json
+         {
+            "full_name" : "Abe",
+            "nik_name" : "kebe",
+            "email" : "test@gmail.com",
+            "address": "ET",
+            "position": "Junior Developer",
+            "role": "admin",
+            "user_name": "abe",
+            "password": "1234"
+        }
+      - Returns JSON data like the following format 
+      ```json
+           {
+        "code": 201,
+        "message": "user registered"
+      }
+2. /issues 
+  - adds issues to the DB
+      - Request Arguments: 
+      ```json
+          {
+            "name": "test issue",
+            "descriprion": "test",
+            "category": "test category",
+            "priority": "high",
+            "due_date": "11-05-17"
+       }
+      - Returns JSON data like the following format 
+      ```json
+           {
+        "code": 201,
+        "message": "Issues registered"
+      }
+3. /comments 
+  - adds a comment on a specific issue
+  - Request Arguments: 
+      ```json
+          {
+          "content": "test comment",
+          "issue_id": 1,
+          "user_id": 1
+       }
+      - Returns JSON data like the following format 
+      ```json
+           {
+        "code": 201,
+        "message": "comment added"
+      }
+4. /login 
+  - login endpoint
+  - Request Arguments: 
+      ```json
+          {
+        "username":"test@gmail.com",
+         "password":"1234"
+       }
+      - Returns JSON data like the following format 
+      ```json
+           {
+          "ussrData": ["user name", "role"...],
+          "token": "this is jwt token"
+      }
 ### Endponints accessed by PUT Method 
-...
+
 
 ### Endponints accessed by DELETE Method 

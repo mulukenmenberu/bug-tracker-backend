@@ -20,7 +20,7 @@ class Issue(Resource):
              created_at=created_at, updated_at=updated_at)
         db.session.add(issue)
         db.session.commit()
-        return jsonify({"message":"success","code":200})
+        return jsonify({"message":"Issues registered","code":201})
     def get(self):
         data = Issues.query.all()
         issues = []
