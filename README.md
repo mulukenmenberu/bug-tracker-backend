@@ -9,7 +9,7 @@ This is a bug tracker api which allows to track bugs or tasks and assigning them
   - Register & Manage Users, Register & Manage Issues, Assign Issues to Users, Track progress, Manage comments added to issues e.t.c
 - Users
   - View All issues, manage issues assigned to them, track isue progress, add comment on issues e.t.c
-
+- Postman collection link:- https://www.getpostman.com/collections/eb09dcb58ba86c7b7e8c
 ## Environemnt Setup 
 ### Python Installation 
 If you Don't have installed Python yet, please go here and itstall it. 
