@@ -101,11 +101,12 @@ or
         }.............
 
   2. /get/<int:user_id>
-      - gets a single user based on user id. 
-          - Request Arguments: User ID
-          - Returns JSON data like the following format 
-          ```json
-             {
+     - gets a single user based on user id. 
+     - Request Arguments: User ID
+     - Returns JSON data like the following format 
+     ```json
+
+               {
                 "address": "Adis Ababa",
                 "created_at": "unix timestamp will be here",
                 "email": "test@gmail.com",
@@ -119,11 +120,11 @@ or
                 "updated_at": "unix timestamp will be here",
                 "user_name": "unix timestamp will be here"
              },
-  3. /issues/<int:issue_id>
-       - gets a single Issue (Task)  based on task id. 
-          - Request Arguments: Issue ID
-          - Returns JSON data like the following format 
-          ```json
+3. /issues/<int:issue_id>
+   - gets a single Issue (Task)  based on task id. 
+   - Request Arguments: Issue ID
+   - Returns JSON data like the following format 
+   ```json
              {
                 "assigned_date": "1662124444.2369049",
                 "assignee": "Muluken",
@@ -137,14 +138,12 @@ or
                 "solved_date": "1662124444.236909",
                 "updated_at": "1662124444.2369113"
              }
-  4. /issues
-    - gets list of all registered issues. 
-          - Request Arguments: None
-          - Returns JSON data like the following format 
-
-          ```json
-             
-                  {
+4. /issues
+   - gets list of all registered issues. 
+   - Request Arguments: None
+   - Returns JSON data like the following format 
+   ```json
+         {
                       "assigned_date": "1662124444.2369049",
                       "assignee": "Muluken",
                       "category": "Bug",
@@ -171,43 +170,40 @@ or
                         "updated_at": "1662124444.2369113"
                   },
             
-  5. /comments
-    - gets list of comments (discussions) on all available tasks. 
-          - Request Arguments: None
-          - Returns JSON data like the following format 
-
-          ```json
-               
-                    {
-                        "content": "test comment",
-                        "id": 2,
-                        "issue_id": 1,
-                        "user_id": 1
-                    },
-                     {
-                        "content": "sample comment",
-                        "id": 1,
-                        "issue_id": 5,
-                        "user_id": 2
-                    }
+5. /comments
+   - gets list of comments (discussions) on all available tasks. 
+   - Request Arguments: None
+   - Returns JSON data like the following format 
+   ```json
+            {
+                "content": "test comment",
+                "id": 2,
+                "issue_id": 1,
+                "user_id": 1
+            },
+              {
+                "content": "sample comment",
+                "id": 1,
+                "issue_id": 5,
+                "user_id": 2
+            }
               
-  6. /comments/<int:comment_id>
-    - gets a specific comment using coment ID 
-          - Request Arguments: Comemnt ID
-          - Returns JSON data like the following format 
-
-          ```json
-                {
-                        "content": "test comment",
-                        "id": 2,
-                        "issue_id": 1,
-                        "user_id": 1
-                    }
+6. /comments/<int:comment_id>
+   - gets a specific comment using coment ID 
+   - Request Arguments: Comemnt ID
+   - Returns JSON data like the following format 
+   ```json
+              {
+                      "content": "test comment",
+                      "id": 2,
+                      "issue_id": 1,
+                      "user_id": 1
+                  }
 ### Endponints accessed by POST Method 
 1. /users 
- - adds users to the DB
-      - Request Arguments: 
-      ```json
+   - adds users to the DB
+   - Request Arguments: 
+   ```json
          {
             "full_name" : "Abe",
             "nik_name" : "kebe",
@@ -218,16 +214,17 @@ or
             "user_name": "abe",
             "password": "1234"
         }
-      - Returns JSON data like the following format 
-      ```json
+
+    - Returns JSON data like the following format 
+    ```json
            {
         "code": 201,
         "message": "user registered"
       }
 2. /issues 
   - adds issues to the DB
-      - Request Arguments: 
-      ```json
+  - Request Arguments: 
+  ```json
           {
             "name": "test issue",
             "descriprion": "test",
@@ -235,8 +232,9 @@ or
             "priority": "high",
             "due_date": "11-05-17"
        }
-      - Returns JSON data like the following format 
-      ```json
+
+    - Returns JSON data like the following format 
+    ```json
            {
         "code": 201,
         "message": "Issues registered"
@@ -244,14 +242,14 @@ or
 3. /comments 
   - adds a comment on a specific issue
   - Request Arguments: 
-      ```json
+  ```json
           {
           "content": "test comment",
           "issue_id": 1,
           "user_id": 1
        }
-      - Returns JSON data like the following format 
-      ```json
+  - Returns JSON data like the following format 
+  ```json
            {
         "code": 201,
         "message": "comment added"
@@ -259,13 +257,14 @@ or
 4. /login 
   - login endpoint
   - Request Arguments: 
-      ```json
+  ```json
           {
         "username":"test@gmail.com",
          "password":"1234"
        }
-      - Returns JSON data like the following format 
-      ```json
+
+  - Returns JSON data like the following format 
+  ```json
            {
           "ussrData": ["user name", "role"...],
           "token": "this is jwt token"
