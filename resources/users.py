@@ -86,7 +86,7 @@ class UserList(Resource):
         user.updated_at = time.time()#data['updated_at']
         db.session.commit()
         return jsonify({"message":"user updated","code":200})
-    #@admin_login_required
-    def delete(self, id):
+    @admin_login_required
+    def delete(self, id, payload):
         Users.query.filter_by(id=id).delete()
         return jsonify({"message":"User Deleted","code":200})
