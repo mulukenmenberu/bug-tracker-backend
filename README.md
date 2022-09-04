@@ -347,8 +347,9 @@ or
         "code": 200,
         "message": "comment updated"
       }
-
+  ``` 
 ### Endponints accessed by DELETE Method 
+
 1. /users<int:user_id> 
   - Allowed Users: @Admin
   - deletes users using user ID
