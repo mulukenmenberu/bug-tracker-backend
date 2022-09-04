@@ -66,6 +66,7 @@ or
 ### API Description 
 ### Endponints accessed by GET Method 
   1.  /users
+      - Allowed Users: @Admin
       - gets list of registered users
       - Request Arguments: None
       - Returns JSON data like the following format 
@@ -101,6 +102,7 @@ or
         }.............
 
   2. /get/<int:user_id>
+     - Allowed Users: @Admin, @User
      - gets a single user based on user id. 
      - Request Arguments: User ID
      - Returns JSON data like the following format 
@@ -121,6 +123,7 @@ or
                 "user_name": "unix timestamp will be here"
              },
 3. /issues/<int:issue_id>
+   - Allowed Users: @Admin, @User
    - gets a single Issue (Task)  based on task id. 
    - Request Arguments: Issue ID
    - Returns JSON data like the following format 
@@ -139,6 +142,7 @@ or
                 "updated_at": "1662124444.2369113"
              }
 4. /issues
+   - Allowed Users: @Admin, @User
    - gets list of all registered issues. 
    - Request Arguments: None
    - Returns JSON data like the following format 
@@ -171,6 +175,7 @@ or
                   },
             
 5. /comments
+   - Allowed Users: @Admin, @User
    - gets list of comments (discussions) on all available tasks. 
    - Request Arguments: None
    - Returns JSON data like the following format 
@@ -189,6 +194,7 @@ or
             }
               
 6. /comments/<int:comment_id>
+   - Allowed Users: @Admin, @User
    - gets a specific comment using coment ID 
    - Request Arguments: Comemnt ID
    - Returns JSON data like the following format 
@@ -201,6 +207,7 @@ or
                   }
 ### Endponints accessed by POST Method 
 1. /users 
+   - Allowed Users: @Admin
    - adds users to the DB
    - Request Arguments: 
    ```json
@@ -223,6 +230,7 @@ or
       }
     ```
 2. /issues 
+  - Allowed Users: @Admin
   - adds issues to the DB
   - Request Arguments: 
   ```json
@@ -243,6 +251,7 @@ or
       } 
   ```
 3. /comments 
+  - Allowed Users: @Admin
   - adds a comment on a specific issue
   - Request Arguments: 
   ```json
@@ -260,7 +269,7 @@ or
       }
   ```
 4. /login 
-  - login endpoint
+  - Auth endpoint
   - Request Arguments: 
   ```json
           {
@@ -276,7 +285,9 @@ or
       }
   ```
 ### Endponints accessed by PUT Method 
+
 1. /users/<int:user_id> 
+  - Allowed Users: @Admin
   - updates user details using user ID
   - Request Arguments: 
   ```json
@@ -299,6 +310,7 @@ or
       }
   ```
 2. /issues<int:issue_id> 
+  - Allowed Users: @Admin
   - updates issue details using issue ID
   - Request Arguments: 
   ```json
@@ -319,6 +331,7 @@ or
       }
   ```
 3. /comments<int:comment_id> 
+  - Allowed Users: @Admin
   - updates issue details using comment ID
   - Request Arguments: 
   ```json
@@ -337,6 +350,7 @@ or
 
 ### Endponints accessed by DELETE Method 
 1. /users<int:user_id> 
+  - Allowed Users: @Admin
   - deletes users using user ID
   - Request Arguments: None
   - Returns JSON data like the following format 
@@ -347,6 +361,7 @@ or
       }
   ```
 2. /issues<int:issue_id> 
+  - Allowed Users: @Admin
   - deletes issues using issue ID
   - Request Arguments: None
   - Returns JSON data like the following format 
@@ -357,6 +372,7 @@ or
       }
   ```
 3. /comments<int:comment_id> 
+  - Allowed Users: @Admin
   - deletes comments using commenr ID
   - Request Arguments: None
   - Returns JSON data like the following format 

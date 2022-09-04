@@ -2,6 +2,7 @@
 from email.policy import default
 from venv import create
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import backref, relationship
 db = SQLAlchemy()
 
 class Users(db.Model):
@@ -34,9 +35,12 @@ class Issues(db.Model):
     created_at= db.Column(db.String(), nullable=True)
     updated_at = db.Column(db.String(), nullable= True)
 
+
 class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     issue_id = db.Column(db.Integer, db.ForeignKey('issues.id'))
     content = db.Column(db.String(120), nullable=False)
+    user_id_fk = relationship('Users', backref='parent_user', foreign_keys=[user_id], cascade="all,delete")
+    issue_id_fk = relationship('Issues', backref='parent_issue', foreign_keys=[issue_id], cascade="all,delete")
