@@ -141,8 +141,9 @@ or
     - gets list of all registered issues. 
           - Request Arguments: None
           - Returns JSON data like the following format 
+
           ```json
-             [
+             
                   {
                       "assigned_date": "1662124444.2369049",
                       "assignee": "Muluken",
@@ -169,13 +170,14 @@ or
                         "solved_date": "1662124444.236909",
                         "updated_at": "1662124444.2369113"
                   },
-            ]
+            
   5. /comments
     - gets list of comments (discussions) on all available tasks. 
           - Request Arguments: None
           - Returns JSON data like the following format 
+
           ```json
-               [
+               
                     {
                         "content": "test comment",
                         "id": 2,
@@ -188,14 +190,14 @@ or
                         "issue_id": 5,
                         "user_id": 2
                     }
-              ]
+              
   6. /comments/<int:comment_id>
     - gets a specific comment using coment ID 
           - Request Arguments: Comemnt ID
           - Returns JSON data like the following format 
+
           ```json
-               
-                    {
+                {
                         "content": "test comment",
                         "id": 2,
                         "issue_id": 1,
