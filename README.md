@@ -235,13 +235,13 @@ or
        }
   ```
 
-    - Returns JSON data like the following format 
-    ```json
+  - Returns JSON data like the following format 
+  ```json
            {
         "code": 201,
         "message": "Issues registered"
       } 
-    ```
+  ```
 3. /comments 
   - adds a comment on a specific issue
   - Request Arguments: 
@@ -276,6 +276,93 @@ or
       }
   ```
 ### Endponints accessed by PUT Method 
-
+1. /users/<int:user_id> 
+  - updates user details using user ID
+  - Request Arguments: 
+  ```json
+          {
+        "full_name" : "Abe",
+        "nik_name" : "kebe",
+        "email" : "test@gmail.com",
+        "address": "AA",
+        "position": "Support",
+        "role": "user",
+        "user_name": "abe",
+        "password": "123456"
+       } 
+  ```
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "user updated"
+      }
+  ```
+2. /issues<int:issue_id> 
+  - updates issue details using issue ID
+  - Request Arguments: 
+  ```json
+          {
+        "name": "issue test",
+        "descriprion": "test descriprion",
+        "category": "test category",
+        "priority": "high",
+        "due_date": "11-05-17",
+        "assignee": "Mule"
+       } 
+  ```
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "issue updated"
+      }
+  ```
+3. /comments<int:comment_id> 
+  - updates issue details using comment ID
+  - Request Arguments: 
+  ```json
+          {
+        "content": "test comment",
+        "issue_id": 1,
+        "user_id": 1
+       } 
+  ```
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "comment updated"
+      }
 
 ### Endponints accessed by DELETE Method 
+1. /users<int:user_id> 
+  - deletes users using user ID
+  - Request Arguments: None
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "user deleted"
+      }
+  ```
+2. /issues<int:issue_id> 
+  - deletes issues using issue ID
+  - Request Arguments: None
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "issue deleted"
+      }
+  ```
+3. /comments<int:comment_id> 
+  - deletes comments using commenr ID
+  - Request Arguments: None
+  - Returns JSON data like the following format 
+  ```json
+           {
+        "code": 200,
+        "message": "comment deleted"
+      }
+  ```

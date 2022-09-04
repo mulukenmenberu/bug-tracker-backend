@@ -72,7 +72,7 @@ class IssuesList(Resource):
             issue.solved_date = time.time()
         issue.updated_at = time.time()
         db.session.commit()
-        return jsonify({"message":"success","code":200})
+        return jsonify({"message":"issue updated","code":200})
     def delete(self,id):
         Issues.query.filter_by(id=id).delete()
         return jsonify({"message":"success","code":200})
