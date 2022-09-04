@@ -1,5 +1,6 @@
-# Bug Tracker API Documentation
+# Bug Tracker Backend Documentation
 
+### This is a bug tracker project with flask backend and React frontend 
 ## Project Description 
 
 This is a bug tracker api which allows to track bugs or tasks and assigning them to the available personnel. this is python (Flask) backend for the bug tracker project. this project has the following list of functionalities 
@@ -41,7 +42,7 @@ createbd bug_tracker
 If you want to have a demo data in the newly created DB, you can run the following command. The demo DB file located under this directory. 
 
 ```bash
-psql bug_tracker < bug_tracker.psql
+psql bug_tracker < bug_tracker.sql
 ```
 - Alternatively, you can create at once all required tables using flask migrate, but you will not find any demo data
   - follow the following command to apply flask migrate
